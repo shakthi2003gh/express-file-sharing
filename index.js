@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const debug = require("debug");
+const files = require("./routes/files");
 const uploads = require("./routes/uploads");
 const index = require("./routes/index");
 
@@ -22,6 +23,8 @@ mongoose
   .catch(() => startup("Could not connect to MongoDB..."));
 
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/upload", uploads);
+app.use("/files", files);
 app.use("/", index);
