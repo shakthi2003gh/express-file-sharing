@@ -8,6 +8,11 @@
     <title>File sharing</title>
 
     <style>
+        div {
+            text-align: center;
+            margin-block: 1rem;
+        }
+
         form {
             display: grid;
             gap: .5rem;
@@ -23,15 +28,24 @@
 </head>
 
 <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="file">File:</label>
-        <input type="file" name="file" id="file" accept="text/plain">
+    <% if (!!locals.fileLink) {%>
+        <div>
+            Your file is upload
+            <a href="<%= locals.fileLink %>">
+                <%= locals.fileLink %>
+            </a>
+        </div>
+        <% } %>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="file">File:</label>
+                <input type="file" name="file" id="file" accept="text/plain">
 
-        <button type="submit">Submit</button>
-    </form>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password">
+
+                <button type="submit">Submit</button>
+            </form>
 
 </body>
 
